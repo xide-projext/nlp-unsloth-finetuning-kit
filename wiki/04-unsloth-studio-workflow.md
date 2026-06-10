@@ -84,4 +84,20 @@ loss 곡선을 보며 과적합/과소적합을 판단 ([02 §loss 읽기](02-hy
 - 출력이 안 변함 → epoch/r↑, 데이터 품질·형식 점검, target modules가 All인지 확인.
 - 이상한 반복·붕괴 → lr↓, epoch↓(과적합), 데이터 중복 점검.
 
+---
+
+## 📄 더 읽을 거리 — 단계별 논문 매핑
+
+Studio의 각 단계가 어떤 연구에 기반하는지(자세한 설명·예시는 링크된 위키에):
+
+| 단계 | 기반 논문 | 한 줄 |
+|---|---|---|
+| ④ 학습 (LoRA/QLoRA) | LoRA (2106.09685), QLoRA (2305.14314) | 1%만 학습 / 4-bit로 얼리기 → [`01`](01-core-concepts.md) |
+| ④ 하이퍼파라미터 | LoRA ablation, rsLoRA (2312.03732) | rank·alpha 설정 근거 → [`02`](02-hyperparameters.md) |
+| ②③ 데이터 | LIMA (2305.11206), Self-Instruct (2212.10560) | 질>양 / 데이터 부트스트랩 → [`03`](03-dataset-design.md) |
+| ②③ 토큰화 | BPE (1508.07909), SentencePiece (1808.06226) | 서브워드 분절 → [`03`](03-dataset-design.md) |
+| ⑥ Export 양자화 | GPTQ (2210.17323), LLM.int8() (2208.07339) | GGUF 양자화의 원리 → [`01`](01-core-concepts.md) |
+
+전체 색인과 각 논문의 설명방식·예시는 [`05-resources.md`](05-resources.md).
+
 다음 → 결과를 [`report/final-project-template.md`](../report/final-project-template.md)에 정리.

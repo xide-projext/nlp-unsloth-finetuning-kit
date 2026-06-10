@@ -108,4 +108,34 @@ Unsloth 프리셋은 보통 All을 기본으로 잡아 줍니다.
 > **목표**: 하이퍼파라미터를 조정해 과적합·과소적합을 막으면서 정확도를 올리는 것.
 > 리포트에는 loss 곡선 스크린샷 + "이 그래프를 보고 무엇을 어떻게 바꿨다"를 함께 적으세요.
 
+---
+
+## 📄 더 읽을 거리 — 대표 논문 (손잡이 값의 근거)
+
+### ① LoRA (Hu et al., 2021) — rank·대상모듈 ablation
+- **설명 방식**: "어느 weight 행렬에, rank 얼마로 거는 게 좋은가"를 ablation 표로 직접 비교.
+- **직접 예시**: 같은 파라미터 예산이면 q,v 한두 행렬에 큰 rank를 거는 것보다 **여러 행렬에 작은
+  rank로 분산**하는 게 유리. rank를 키워도 성능이 **금방 포화**(작은 r로 충분) → 본 위키의
+  "r=8~16에서 시작, target=All" 권장의 근거.
+- 🔗 <https://arxiv.org/abs/2106.09685>
+
+### ② rsLoRA: A Rank-Stabilization Scaling Factor for LoRA (Kalajdzievski, 2023) — alpha의 진실
+- **설명 방식**: 표준 스케일 `α/r`은 **rank가 커질수록 gradient가 붕괴**한다(클수록 업데이트가
+  억눌림)는 걸 수학적으로 보이고, 출력·gradient의 norm이 rank에 무관하게 일정하도록 **`α/√r`** 를
+  유도.
+- **직접 예시**: `α/√r`을 쓰면 rank를 키울수록 성능이 계속 좋아짐(compute↔성능 트레이드오프 확보).
+  표준 `α/r`에서는 정체. → Studio/PEFT의 **`use_rslora`** 옵션. 본 위키의 `α=2r` 경험칙은
+  **작은 r에서만 안전**하고, 큰 r을 쓸 거면 rsLoRA를 고려하라는 뜻.
+- 🔗 <https://arxiv.org/abs/2312.03732>
+
+### ③ DoRA: Weight-Decomposed Low-Rank Adaptation (Liu et al., 2024) — LoRA의 개량
+- **설명 방식**: 가중치를 **크기(magnitude)와 방향(direction)** 으로 분해하고, 방향만 LoRA로 학습 →
+  full fine-tuning에 더 가까운 학습 거동을 얻는다는 분석.
+- **직접 예시**: 같은 파라미터 예산에서 여러 벤치마크에서 LoRA를 상회. 추론 비용 추가 없음.
+  (Studio에 옵션이 있으면 비교 실험 거리로 좋음.)
+- 🔗 <https://arxiv.org/abs/2402.09353>
+
+> 학습률·warmup·배치의 일반 이론은 데이터셋 섹션의 학습/정렬 논문([`03`](03-dataset-design.md))과
+> [`05-resources.md`](05-resources.md) 색인을 참조.
+
 다음 → [`03-dataset-design.md`](03-dataset-design.md)

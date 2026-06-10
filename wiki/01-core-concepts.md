@@ -90,7 +90,51 @@
 
 ---
 
+## 📄 더 읽을 거리 — 대표 논문 (이 섹션 개념의 원전)
+
+각 항목은 **논문이 개념을 어떻게 설명/비유하는지 + 직접 든 예시(수치) + 링크**입니다.
+
+### ① LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2021)
+- **설명 방식**: 친근한 비유 대신, *"큰 모델을 적응시킬 때 생기는 가중치 변화 ΔW가 본질적으로 낮은
+  rank를 가진다"*는 **가설**을 세우고 `ΔW = B·A`로 분해해 검증. "과하게 큰 모델은 사실 적은
+  자유도로 학습된다"는 직관을 정량화한 글.
+- **직접 예시**: GPT-3 **175B에서 학습 파라미터를 10,000배, GPU 메모리를 3배** 줄이면서 full
+  fine-tuning과 동등 이상. 일부 층은 **rank r=1~2**로도 충분함을 부분공간 유사도(Grassmann 거리)로
+  보임. → 실습 1과 정확히 같은 발상.
+- 🔗 <https://arxiv.org/abs/2106.09685>
+
+### ② Intrinsic Dimensionality Explains the Effectiveness of Fine-Tuning (Aghajanyan et al., 2020)
+- **왜 보나**: LoRA가 "왜 통하는가"의 직접적 토대.
+- **설명 방식**: *"사전학습 모델은 매우 낮은 intrinsic dimension을 갖는다"* — 전체 파라미터 공간 대신
+  **무작위 저차원 부분공간**에 투영해 학습해도 거의 같은 성능이 난다는 것으로 '저차원성'을 증명.
+- **직접 예시**: RoBERTa를 **단 200개**의 학습 파라미터(무작위 부분공간)만으로 튜닝해 MRPC에서
+  full 성능의 **90%** 달성.
+- 🔗 <https://arxiv.org/abs/2012.13255>
+
+### ③ QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023)
+- **설명 방식**: NF4(4-bit NormalFloat) — *"가중치가 정규분포이니 분포에 맞춰 4-bit 눈금을 배치하면
+  정보이론적으로 최적"*이라는 논리(실습 2-(c)의 분위수 눈금이 바로 이 아이디어). +
+  double quantization(양자화 상수까지 한 번 더 양자화) + paged optimizer(메모리 스파이크 방지).
+- **직접 예시**: **65B 모델을 단일 48GB GPU**에서 튜닝하며 16-bit full 성능 유지. Guanaco가 단일 GPU
+  **24시간** 학습으로 ChatGPT의 **99.3%** 도달.
+- 🔗 <https://arxiv.org/abs/2305.14314>
+
+### ④ LLM.int8() (Dettmers et al., 2022) — 양자화의 함정
+- **설명 방식**: 큰 모델에는 소수의 *'이상치(outlier) 특징'*이 있어 단순 양자화가 무너진다 → 이상치만
+  16-bit로 따로 빼고 나머지는 8-bit로 처리(혼합 정밀도 분해).
+- **직접 예시**: 약 **6.7B 파라미터** 규모부터 outlier feature가 창발(emergent)해 성능을 좌우.
+  "왜 그냥 8-bit로 못 자르나"의 답.
+- 🔗 <https://arxiv.org/abs/2208.07339>
+
+### ⑤ GPTQ (Frantar et al., 2022) — 학습 없는 사후 양자화(PTQ)
+- **설명 방식**: 이미 학습된 모델을 추가 학습 없이 2차근사 기반으로 3~4bit로 압축. (QLoRA의
+  '학습 중 양자화'와 대비되는 '학습 후 양자화'.)
+- **직접 예시**: OPT/BLOOM **175B를 약 4 GPU시간**에 3~4bit로 양자화, 단일 GPU에서 175B 추론.
+- 🔗 <https://arxiv.org/abs/2210.17323>
+
+---
+
 ## 다음 단계
 
 이 개념들이 실제 학습에서 **어떤 숫자(손잡이)로 나타나는지**는
-[`02-hyperparameters.md`](02-hyperparameters.md)에서. 출처·심화 링크는 [`05-resources.md`](05-resources.md).
+[`02-hyperparameters.md`](02-hyperparameters.md)에서. 전체 논문 색인은 [`05-resources.md`](05-resources.md).

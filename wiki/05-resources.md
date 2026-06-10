@@ -47,10 +47,29 @@
 
 ---
 
-## 원논문 (선택, 리포트 인용용)
+## 📄 대표 논문 마스터 색인 (리포트 인용용)
 
-- **LoRA**: Hu et al., 2021 — *"LoRA: Low-Rank Adaptation of Large Language Models"* (arXiv:2106.09685)
-- **QLoRA**: Dettmers et al., 2023 — *"QLoRA: Efficient Finetuning of Quantized LLMs"* (arXiv:2305.14314, NF4 출처)
+각 논문의 **설명 방식·직접 예시**는 링크된 위키 섹션에 자세히 적어 두었습니다. 아래는 빠른 색인.
+
+| # | 논문 (연도) | 한 줄 핵심 + 대표 수치 | 자세히 | arXiv |
+|---|---|---|---|---|
+| 1 | **LoRA** (Hu, 2021) | ΔW를 저랭크 B·A로. GPT-3 175B 학습파라미터 **10,000배↓**, 메모리 3배↓ | [01](01-core-concepts.md)·[02](02-hyperparameters.md) | [2106.09685](https://arxiv.org/abs/2106.09685) |
+| 2 | **Intrinsic Dimensionality** (Aghajanyan, 2020) | LoRA의 토대. RoBERTa **200개 파라미터**로 MRPC 90% | [01](01-core-concepts.md) | [2012.13255](https://arxiv.org/abs/2012.13255) |
+| 3 | **QLoRA** (Dettmers, 2023) | NF4(정보이론 최적)+이중양자화. **65B를 48GB 1장**에, Guanaco 99.3% | [01](01-core-concepts.md) | [2305.14314](https://arxiv.org/abs/2305.14314) |
+| 4 | **LLM.int8()** (Dettmers, 2022) | 이상치 특징 → 혼합정밀도. **6.7B**부터 outlier 창발 | [01](01-core-concepts.md) | [2208.07339](https://arxiv.org/abs/2208.07339) |
+| 5 | **GPTQ** (Frantar, 2022) | 학습 없는 PTQ. **175B를 4 GPU시간**에 3~4bit | [01](01-core-concepts.md) | [2210.17323](https://arxiv.org/abs/2210.17323) |
+| 6 | **rsLoRA** (Kalajdzievski, 2023) | `α/r`은 rank↑시 gradient 붕괴 → **`α/√r`** | [02](02-hyperparameters.md) | [2312.03732](https://arxiv.org/abs/2312.03732) |
+| 7 | **DoRA** (Liu, 2024) | 가중치를 크기·방향 분해, 방향만 LoRA | [02](02-hyperparameters.md) | [2402.09353](https://arxiv.org/abs/2402.09353) |
+| 8 | **LIMA** (Zhou, 2023) | Superficial Alignment. **1,000개**로 GPT-4 대비 43% 선호 | [03](03-dataset-design.md) | [2305.11206](https://arxiv.org/abs/2305.11206) |
+| 9 | **InstructGPT** (Ouyang, 2022) | RLHF. **1.3B가 175B GPT-3보다 선호** | [03](03-dataset-design.md) | [2203.02155](https://arxiv.org/abs/2203.02155) |
+| 10 | **Self-Instruct** (Wang, 2022) | 데이터 부트스트랩. **175 seed → 52K** | [03](03-dataset-design.md) | [2212.10560](https://arxiv.org/abs/2212.10560) |
+| 11 | **BPE/Subword** (Sennrich, 2016) | open-vocab 서브워드. 'low'+'er' 병합 | [03](03-dataset-design.md) | [1508.07909](https://arxiv.org/abs/1508.07909) |
+| 12 | **SentencePiece** (Kudo, 2018) | 언어독립 분절(`▁`). 한국어 유용 | [03](03-dataset-design.md) | [1808.06226](https://arxiv.org/abs/1808.06226) |
+
+> 인용 팁: 리포트에서 "LoRA를 썼다"보다 "Hu et al.(2021)이 보인 *저랭크 가설*에 근거해 r=16으로
+> 설정했다"처럼 **논문→선택의 연결**을 쓰면 점수에 직결됩니다.
+
+---
 
 ---
 

@@ -18,8 +18,9 @@
 │   ├── 02-hyperparameters.md       · 학습률·에폭·rank·alpha·batch (손잡이 가이드)
 │   ├── 03-dataset-design.md        · 데이터셋 설계 (결과의 절반)
 │   ├── 04-unsloth-studio-workflow.md · Studio 화면 단계별 워크플로우
-│   ├── 05-resources.md             · 추천 영상·문서·링크 (출처 정리)
-│   └── 06-glossary.md              · 한 줄 용어집 (빠른 참조)
+│   ├── 05-resources.md             · 추천 영상·문서 + 대표 논문 마스터 색인(12편)
+│   ├── 06-glossary.md              · 한 줄 용어집 (빠른 참조)
+│   └── 07-lineage-map.md           · 계보 지도: 고전(LSA·word2vec)→LoRA/QLoRA 연결 (Mermaid)
 ├── tutorial/                       ← numpy만으로 돌아가는 개념 실습 (GPU 불필요)
 │   ├── README.md
 │   ├── 01_rank_and_lora.py         · rank·저랭크근사·LoRA 학습 체험

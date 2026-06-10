@@ -52,4 +52,7 @@
 | 5 | Studio 실행 | [04-workflow](04-unsloth-studio-workflow.md) |
 | 6 | 리포트 작성 | [`report/final-project-template.md`](../report/final-project-template.md) |
 
-막히면 [`06-glossary.md`](06-glossary.md)에서 용어 한 줄 정의를, 출처는 [`05-resources.md`](05-resources.md)에서.
+막히면 [`06-glossary.md`](06-glossary.md)에서 용어 한 줄 정의를, 출처·대표 논문은 [`05-resources.md`](05-resources.md)에서.
+
+> 📌 개념이 **자연어정보분석의 어떤 알고리즘 계보**(LSA·word2vec·Transformer …)에서 왔는지
+> 한 장으로 보려면 → [`07-lineage-map.md`](07-lineage-map.md). 강의 고전과 LoRA를 잇는 지도입니다.

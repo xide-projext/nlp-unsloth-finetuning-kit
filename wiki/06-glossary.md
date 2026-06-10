@@ -37,3 +37,8 @@
 | **DPO/GRPO** | 선호·강화 기반 정렬 학습. lr이 SFT보다 훨씬 작음(예 5e-6). |
 | **VRAM** | GPU 메모리. 모델·배치 크기를 제한하는 핵심 예산. |
 | **OOM** | Out Of Memory. VRAM 초과 에러. batch↓·QLoRA로 대응. |
+
+---
+
+각 용어가 **어느 알고리즘 계보에서 나왔는지**는 [`07-lineage-map.md`](07-lineage-map.md),
+대표 논문 색인은 [`05-resources.md`](05-resources.md) 참조.
