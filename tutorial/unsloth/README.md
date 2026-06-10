@@ -56,6 +56,38 @@ Studio가 내부에서 하는 일을 ~40줄 코드로 직접 보고 제어합니
 
 ---
 
+## 🅲 Track C — 로컬 실행(Apple Silicon/CPU)으로 *실제로* 돌려보기
+
+Unsloth는 **CUDA 전용**이라 Mac에선 못 돕니다. 그래서 **같은 LoRA 워크플로우**를 표준 스택
+(transformers + PEFT)으로 옮긴 [`local_mps_finetune.py`](local_mps_finetune.py)를 두었습니다 —
+이 맥(M-시리즈 GPU=MPS)에서 끝까지 실행됩니다. 학습되는 수학은 동일하고, Unsloth는 그 위의
+속도·메모리 최적화 래퍼입니다.
+
+```bash
+python3.12 -m venv .venv && source .venv/bin/activate
+pip install torch transformers peft accelerate datasets
+cd tutorial/unsloth && python local_mps_finetune.py
+```
+
+### ✅ 실제 실행 결과 (Apple M4 Pro / MPS, 약 30초)
+
+`Qwen2.5-0.5B-Instruct` + LoRA(r=16, 학습 파라미터 **1.75%**), `sample_data.jsonl` 14개로 20 epoch.
+**loss 3.43 → 0.05.** 전체 로그: [`run_result.md`](run_result.md).
+
+| 질문 | 학습 전 (베이스) | 학습 후 (LoRA) |
+|---|---|---|
+| QLoRA는 LoRA랑 뭐가 달라? | "QLoRA…LoRa技术的缩写…物联网…"(무선통신 LoRa와 혼동, 중국어) | **"얼린 원본을 4비트(NF4)로 양자화해 메모리를 약 75% 줄이고, 그 위에 LoRA 어댑터만 학습…"** |
+| 너는 누구야? | "저는 AI 어시스턴트인 Qwen입니다…"(일반) | **"연세대 자연어정보분석 강의의 파인튜닝 실습을 돕는 조교 봇입니다…"** |
+
+→ 우리 데이터의 **내용·페르소나·말투를 그대로 학습**. 단 14개·20 epoch라 과적합(=암기)에 가깝고,
+이는 [02-hyperparameters](../../wiki/02-hyperparameters.md)의 "epoch↑ → 과적합" 그래프를 실제로 본 셈.
+실전에선 데이터를 늘리고 epoch을 1~3으로 줄입니다.
+
+> Track C는 "실제로 도는 것"을 보여주기 위한 로컬 대체물입니다. 과제 제출은 **Track A(Studio)** 또는
+> **Track B(Colab+Unsloth)** 로 하세요 — 그게 과제가 요구하는 Unsloth입니다.
+
+---
+
 ## 자신의 프로젝트로 바꾸기
 
 1. `sample_data.jsonl`을 **자신의 도메인 데이터**로 교체(형식은 동일: `messages` 배열).

@@ -6,3 +6,6 @@ __pycache__/
 *.safetensors
 checkpoints/
 outputs/
+lora_adapter/
+lora_model/
+model_gguf/
