@@ -81,18 +81,31 @@ graph LR
 
 ```mermaid
 graph LR
-  A["RNN / LSTM<br/>(순차 처리)"] --> B["seq2seq + Attention<br/>Bahdanau 2014"]
-  B --> C["Transformer 2017<br/>'Attention is All You Need'<br/>self-attention"]
+  A["RNN / LSTM<br/>순차 처리 · O(L)<br/>(고정 크기 메모리)"] --> B["seq2seq + Attention<br/>Bahdanau 2014"]
+  B --> C["Transformer 2017<br/>self-attention · O(L²)<br/>(메모리가 길이 따라 성장)"]
   C --> D["BERT 2018<br/>양방향 인코더·MLM"]
   C --> E["GPT 계열<br/>자기회귀 디코더"]
   E --> F["instruct 모델<br/>(우리가 쓰는 베이스)"]
   D --> F
+  C --> G["효율 시퀀스 모델<br/>Linear Attention · Titans<br/>Sliding Window"]
+  A -.-> G
+  G --> H["★ Memory Caching 2026<br/>Behrouz et al.<br/>은닉상태 체크포인트 캐싱<br/>메모리가 길이 따라 성장"]
+  A -.->|"O(L)"| H
+  C -.->|"O(L²)"| H
   style C fill:#ffe8c2,stroke:#d08700
   style F fill:#c2e0ff,stroke:#0066cc
+  style H fill:#ffe0ef,stroke:#d6336c,stroke-width:3px
 ```
 
 **연결 고리**: Transformer의 q·k·v·o(attention)와 gate·up·down(MLP) 프로젝션이 바로
 [02 target modules](02-hyperparameters.md)에서 **LoRA를 붙이는 그 부품들**입니다.
+
+**🔀 전환점 — Memory Caching (Behrouz et al., 2026, arXiv:2602.24281).** RNN은 메모리가 고정이라
+연산이 **O(L)**(싸지만 순차적), Transformer는 모든 토큰이 서로를 봐서 **O(L²)**(강력하지만 길이에
+제곱). Memory Caching은 RNN의 은닉상태 **체크포인트를 캐싱**해 *메모리가 시퀀스 길이에 따라
+성장*하게 만들어, 두 극단 사이를 **보간(interpolate)** 합니다 — Linear Attention·Titans·Sliding
+Window 위에서 검증. 즉 "RNN의 효율 + Transformer의 표현력"을 노린 가교로, **O(L) vs O(L²)
+복잡도 트레이드오프**를 정면으로 푸는 지점입니다. 🔗 <https://arxiv.org/abs/2602.24281>
 
 ---
 

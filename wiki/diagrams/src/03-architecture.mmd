@@ -1,9 +1,15 @@
 graph LR
-  A["RNN / LSTM<br/>(순차 처리)"] --> B["seq2seq + Attention<br/>Bahdanau 2014"]
-  B --> C["Transformer 2017<br/>'Attention is All You Need'<br/>self-attention"]
+  A["RNN / LSTM<br/>순차 처리 · O(L)<br/>(고정 크기 메모리)"] --> B["seq2seq + Attention<br/>Bahdanau 2014"]
+  B --> C["Transformer 2017<br/>self-attention · O(L²)<br/>(메모리가 길이 따라 성장)"]
   C --> D["BERT 2018<br/>양방향 인코더·MLM"]
   C --> E["GPT 계열<br/>자기회귀 디코더"]
   E --> F["instruct 모델<br/>(우리가 쓰는 베이스)"]
   D --> F
+  C --> G["효율 시퀀스 모델<br/>Linear Attention · Titans<br/>Sliding Window"]
+  A -.-> G
+  G --> H["★ Memory Caching 2026<br/>Behrouz et al.<br/>은닉상태 체크포인트 캐싱<br/>메모리가 길이 따라 성장"]
+  A -.->|"O(L)"| H
+  C -.->|"O(L²)"| H
   style C fill:#ffe8c2,stroke:#d08700
   style F fill:#c2e0ff,stroke:#0066cc
+  style H fill:#ffe0ef,stroke:#d6336c,stroke-width:3px

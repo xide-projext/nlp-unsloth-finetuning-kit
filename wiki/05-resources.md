@@ -65,6 +65,7 @@
 | 10 | **Self-Instruct** (Wang, 2022) | 데이터 부트스트랩. **175 seed → 52K** | [03](03-dataset-design.md) | [2212.10560](https://arxiv.org/abs/2212.10560) |
 | 11 | **BPE/Subword** (Sennrich, 2016) | open-vocab 서브워드. 'low'+'er' 병합 | [03](03-dataset-design.md) | [1508.07909](https://arxiv.org/abs/1508.07909) |
 | 12 | **SentencePiece** (Kudo, 2018) | 언어독립 분절(`▁`). 한국어 유용 | [03](03-dataset-design.md) | [1808.06226](https://arxiv.org/abs/1808.06226) |
+| 13 | **Memory Caching** (Behrouz, 2026) | 🔀 전환점. RNN **O(L)** ↔ Transformer **O(L²)** 보간, 메모리가 길이 따라 성장 | [07](07-lineage-map.md) | [2602.24281](https://arxiv.org/abs/2602.24281) |
 
 > 인용 팁: 리포트에서 "LoRA를 썼다"보다 "Hu et al.(2021)이 보인 *저랭크 가설*에 근거해 r=16으로
 > 설정했다"처럼 **논문→선택의 연결**을 쓰면 점수에 직결됩니다.
