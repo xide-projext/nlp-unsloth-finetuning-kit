@@ -1,0 +1,9 @@
+graph LR
+  A["feature 기반<br/>(임베딩만 추출)"] --> B["full fine-tuning<br/>(전체 가중치 학습·무거움)"]
+  B --> C["Adapter 2019<br/>Houlsby<br/>층 사이 작은 모듈"]
+  C --> D["Prefix / Prompt Tuning<br/>(입력측 학습)"]
+  C --> E["LoRA 2021<br/>저랭크 어댑터·지연 0"]
+  E --> F["QLoRA 2023<br/>4bit 베이스 + LoRA"]
+  E --> G["rsLoRA · DoRA"]
+  style B fill:#ffd5d5,stroke:#c00
+  style E fill:#c2e0ff,stroke:#0066cc

@@ -1,0 +1,11 @@
+graph LR
+  A["선형대수<br/>rank · SVD · 저랭크 근사"] --> B["PCA<br/>주성분 분석"]
+  A --> C["LSA / LSI (1990)<br/>잠재의미분석<br/>＝단어×문서 행렬의 SVD"]
+  C --> D["분포의미론<br/>'단어는 문맥으로 정의'"]
+  B --> E["Intrinsic Dimensionality<br/>Aghajanyan 2020<br/>(200개 파라미터로 90%)"]
+  E --> F["LoRA 2021<br/>ΔW = B·A"]
+  F --> G["QLoRA 2023<br/>4bit + LoRA"]
+  F --> H["rsLoRA 2023<br/>α/√r"]
+  F --> I["DoRA 2024<br/>크기·방향 분해"]
+  style C fill:#ffe8c2,stroke:#d08700
+  style F fill:#c2e0ff,stroke:#0066cc

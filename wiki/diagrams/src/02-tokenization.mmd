@@ -1,0 +1,12 @@
+graph LR
+  A["BoW · 원-핫<br/>(어휘=고정·희소)"] --> B["n-gram 언어모델<br/>(통계적 빈도)"]
+  B --> C["word2vec / GloVe (2013)<br/>분산표현·임베딩"]
+  C --> D["서브워드 토큰화"]
+  D --> E["BPE 2016<br/>Sennrich<br/>'low'+'er' 병합"]
+  D --> F["WordPiece<br/>(BERT)"]
+  D --> G["SentencePiece 2018<br/>언어독립·▁공백"]
+  E --> H["현대 LLM 토크나이저"]
+  F --> H
+  G --> H
+  style C fill:#ffe8c2,stroke:#d08700
+  style H fill:#c2e0ff,stroke:#0066cc

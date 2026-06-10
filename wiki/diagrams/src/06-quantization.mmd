@@ -1,0 +1,9 @@
+graph LR
+  A["float32 / float16<br/>(원본 정밀도)"] --> B["혼합정밀도 학습<br/>(FP16+FP32)"]
+  B --> C["LLM.int8() 2022<br/>이상치만 16bit 분리"]
+  A --> D["GPTQ 2022<br/>학습 후 3~4bit (PTQ)"]
+  C --> E["NF4 / QLoRA 2023<br/>정규분포 맞춤 4bit"]
+  D --> F["GGUF export 양자화<br/>(로컬 실행)"]
+  E --> G["우리 학습: QLoRA"]
+  style E fill:#ffe8c2,stroke:#d08700
+  style G fill:#c2e0ff,stroke:#0066cc

@@ -1,0 +1,9 @@
+graph LR
+  A["지도학습<br/>(입력-정답 쌍)"] --> B["instruction tuning<br/>FLAN/T0 (다태스크 지시)"]
+  B --> C["RLHF / InstructGPT 2022<br/>사람 피드백 정렬<br/>(1.3B＞175B)"]
+  C --> D["LIMA 2023<br/>'질>양' 1,000개"]
+  B --> E["Self-Instruct 2022<br/>합성 데이터 부트스트랩"]
+  D --> F["우리 데이터셋 설계"]
+  E --> F
+  style C fill:#ffe8c2,stroke:#d08700
+  style F fill:#c2e0ff,stroke:#0066cc

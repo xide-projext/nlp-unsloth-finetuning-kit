@@ -1,0 +1,12 @@
+{
+  "theme": "base",
+  "themeVariables": {
+    "fontFamily": "Apple SD Gothic Neo, NanumGothic, sans-serif",
+    "fontSize": "16px",
+    "primaryColor": "#eef4ff",
+    "primaryBorderColor": "#3b82f6",
+    "primaryTextColor": "#0f172a",
+    "lineColor": "#64748b"
+  },
+  "flowchart": { "curve": "basis", "htmlLabels": true, "nodeSpacing": 45, "rankSpacing": 60 }
+}

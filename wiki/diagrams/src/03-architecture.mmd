@@ -1,0 +1,9 @@
+graph LR
+  A["RNN / LSTM<br/>(순차 처리)"] --> B["seq2seq + Attention<br/>Bahdanau 2014"]
+  B --> C["Transformer 2017<br/>'Attention is All You Need'<br/>self-attention"]
+  C --> D["BERT 2018<br/>양방향 인코더·MLM"]
+  C --> E["GPT 계열<br/>자기회귀 디코더"]
+  E --> F["instruct 모델<br/>(우리가 쓰는 베이스)"]
+  D --> F
+  style C fill:#ffe8c2,stroke:#d08700
+  style F fill:#c2e0ff,stroke:#0066cc
