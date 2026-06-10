@@ -1,0 +1,14 @@
+{"messages": [{"role": "user", "content": "LoRA가 뭐야?"}, {"role": "assistant", "content": "원본 가중치는 얼리고, 변화량을 얇은 두 행렬 B·A로 근사해 그 둘만 학습하는 경량 파인튜닝 기법입니다. 전체 파라미터의 약 1%만 학습합니다."}]}
+{"messages": [{"role": "user", "content": "QLoRA는 LoRA랑 뭐가 달라?"}, {"role": "assistant", "content": "QLoRA는 얼린 원본을 4비트(NF4)로 양자화해 메모리를 약 75% 줄이고, 그 위에 LoRA 어댑터만 학습합니다. VRAM이 빠듯할 때 기본 선택입니다."}]}
+{"messages": [{"role": "user", "content": "rank가 뭔지 한 문장으로 설명해줘."}, {"role": "assistant", "content": "행렬이 담고 있는 '독립적인 정보의 개수'입니다. LoRA는 가중치 변화량의 rank가 작다는 가정에서 출발합니다."}]}
+{"messages": [{"role": "user", "content": "학습률은 보통 얼마로 시작해?"}, {"role": "assistant", "content": "일반 LoRA/QLoRA는 2e-4(0.0002)를 출발점으로 권장합니다. 강화학습(DPO·GRPO)은 5e-6 정도로 훨씬 작습니다."}]}
+{"messages": [{"role": "user", "content": "에폭은 몇 번이 적당해?"}, {"role": "assistant", "content": "1~3 에폭을 권장합니다. instruction 데이터셋에서 3회를 넘기면 효용은 줄고 과적합 위험이 커집니다."}]}
+{"messages": [{"role": "user", "content": "alpha는 어떻게 정해?"}, {"role": "assistant", "content": "어댑터 반영 강도를 정하는 값이며, 적용은 (alpha/r)·BA 형태입니다. 경험칙으로 alpha를 rank의 2배(alpha=2r)로 두는 경우가 많습니다."}]}
+{"messages": [{"role": "user", "content": "target modules는 뭘 걸어야 해?"}, {"role": "assistant", "content": "attention의 q·k·v·o와 MLP의 gate·up·down 전체(All)를 거는 것이, attention만 거는 것보다 성능이 좋습니다."}]}
+{"messages": [{"role": "user", "content": "과적합인지 어떻게 알아?"}, {"role": "assistant", "content": "training loss가 거의 0인데 학습에 안 쓴 새 입력에서 답이 이상해지면 과적합입니다. 에폭을 줄이거나 dropout·데이터를 늘려 대응합니다."}]}
+{"messages": [{"role": "user", "content": "토큰화가 왜 필요해?"}, {"role": "assistant", "content": "모델은 글자가 아니라 정수 ID를 입력으로 받기 때문입니다. 텍스트를 서브워드 토큰으로 쪼갠 뒤 ID로 바꿔 넣습니다."}]}
+{"messages": [{"role": "user", "content": "파인튜닝 데이터는 양이 많아야 해?"}, {"role": "assistant", "content": "양보다 품질이 우선입니다. 깨끗하게 정제된 수백~천 개가 지저분한 수만 개보다 낫습니다. LIMA 연구가 1,000개로도 강한 성능을 보였습니다."}]}
+{"messages": [{"role": "user", "content": "VRAM이 부족해서 OOM이 나. 어떻게 해?"}, {"role": "assistant", "content": "QLoRA로 바꾸고, 배치 크기를 줄이는 대신 gradient accumulation을 늘리고, 모델 크기나 max sequence length를 줄여 보세요."}]}
+{"messages": [{"role": "user", "content": "학습한 모델을 로컬에서 돌리려면?"}, {"role": "assistant", "content": "GGUF로 export한 뒤 Ollama나 llama.cpp로 실행하면 됩니다. q4_k_m 같은 양자화 옵션으로 용량을 더 줄일 수 있습니다."}]}
+{"messages": [{"role": "user", "content": "너는 누구야?"}, {"role": "assistant", "content": "저는 연세대 자연어정보분석 강의의 파인튜닝 실습을 돕는 조교 봇입니다. LoRA·QLoRA와 Unsloth 사용법을 간단히 안내합니다."}]}
+{"messages": [{"role": "user", "content": "Unsloth가 뭐가 좋아?"}, {"role": "assistant", "content": "같은 GPU에서 더 빠르고 메모리를 적게 쓰며 LoRA/QLoRA 파인튜닝을 쉽게 해 줍니다. Studio는 코드 없이 UI로 이 과정을 돌릴 수 있게 합니다."}]}

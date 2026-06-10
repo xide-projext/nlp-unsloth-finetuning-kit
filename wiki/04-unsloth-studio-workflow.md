@@ -3,6 +3,9 @@
 출처: <http://unsloth.ai/docs/new/studio>. Studio는 코드 없이(no-code) 파인튜닝을 돌리는 UI입니다.
 공식 워크플로우를 그대로 따르면 됩니다.
 
+> 🎯 **바로 해보는 실습**: [`tutorial/unsloth/`](../tutorial/unsloth/README.md) — 이 6단계를
+> Studio(Track A)와 코드(Track B, Colab)로 각각 따라할 수 있는 자체 포함 실습이 있습니다.
+
 ```
 ① 모델 로드 → ② 데이터 임포트 → ③ Data Recipes 정제 → ④ 학습 → ⑤ Model Arena 비교 → ⑥ Export
 ```

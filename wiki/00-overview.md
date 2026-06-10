@@ -45,12 +45,12 @@
 
 | 순서 | 할 일 | 파일 |
 |---|---|---|
-| 1 | 손으로 직관 잡기 (10분) | `tutorial/*.py` 3개 실행 |
-| 2 | 핵심 개념 정독 | [01-core-concepts](01-core-concepts.md) |
-| 3 | 손잡이 이해 | [02-hyperparameters](02-hyperparameters.md) |
-| 4 | 데이터셋 설계 | [03-dataset-design](03-dataset-design.md) |
-| 5 | Studio 실행 | [04-workflow](04-unsloth-studio-workflow.md) |
-| 6 | 리포트 작성 | [`report/final-project-template.md`](../report/final-project-template.md) |
+| 1 | 핵심 개념 정독 | [01-core-concepts](01-core-concepts.md) |
+| 2 | 손잡이 이해 | [02-hyperparameters](02-hyperparameters.md) |
+| 3 | 데이터셋 설계 | [03-dataset-design](03-dataset-design.md) |
+| 4 | **실제 Unsloth 파인튜닝**(핵심) | [`tutorial/unsloth/`](../tutorial/unsloth/README.md) · [04-workflow](04-unsloth-studio-workflow.md) |
+| 5 | 리포트 작성 | [`report/final-project-template.md`](../report/final-project-template.md) |
+| (선택) | numpy로 개념 1분 체험 | [`tutorial/concepts/`](../tutorial/concepts/README.md) |
 
 막히면 [`06-glossary.md`](06-glossary.md)에서 용어 한 줄 정의를, 출처·대표 논문은 [`05-resources.md`](05-resources.md)에서.
 

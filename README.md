@@ -22,11 +22,12 @@
 │   ├── 06-glossary.md              · 한 줄 용어집 (빠른 참조)
 │   ├── 07-lineage-map.md           · 계보 지도: 고전(LSA·word2vec)→LoRA/QLoRA 연결 (Mermaid)
 │   └── diagrams/                   · 계보 다이어그램 PNG 6장(슬라이드용) + Mermaid 소스
-├── tutorial/                       ← numpy만으로 돌아가는 개념 실습 (GPU 불필요)
-│   ├── README.md
-│   ├── 01_rank_and_lora.py         · rank·저랭크근사·LoRA 학습 체험
-│   ├── 02_quantization.py          · 4-bit 양자화·NF4 직관
-│   └── 03_tokenization_and_dataset.py · BPE·토큰화·chat 데이터 형식
+├── tutorial/                       ← 실습
+│   ├── unsloth/                    · 🎯 핵심: 실제 Unsloth 파인튜닝
+│   │   ├── README.md               ·   Track A(Studio no-code) + Track B(Colab 코드)
+│   │   ├── minimal_finetune.py     ·   최소 파인튜닝 코드 (현재 API 검증, T4 실행)
+│   │   └── sample_data.jsonl       ·   자체 포함 샘플 데이터(14개)
+│   └── concepts/                   · 🧩 선택: numpy 개념 데모 (rank/LoRA·양자화·토큰화)
 └── report/
     └── final-project-template.md   ← 기말 리포트 작성 템플릿
 ```
@@ -35,15 +36,15 @@
 
 ## 🚀 빠른 시작 (3단계)
 
-**1. 개념 잡기** — 손으로 돌려보며 직관부터 (10분, 설치 불필요)
-```bash
-cd tutorial
-python3 01_rank_and_lora.py        # LoRA가 왜 파라미터 1%만 학습하는지
-python3 02_quantization.py         # QLoRA가 왜 메모리 75% 아끼는지
-python3 03_tokenization_and_dataset.py  # 데이터셋을 어떤 형식으로 만드는지
+**1. 실제로 파인튜닝** — 과제 핵심. 무료 Colab(T4) 또는 Unsloth Studio.
 ```
+tutorial/unsloth/README.md 를 따라
+  · Track A: Unsloth Studio(no-code)로 sample_data.jsonl 업로드 → QLoRA 학습 → 비교 → GGUF export
+  · Track B: Colab에서  !pip install unsloth  후  minimal_finetune.py  실행
+```
+> (개념이 헷갈리면 `tutorial/concepts/`에서 numpy로 1분 체험 — *선택 보충*.)
 
-**2. 위키 읽기** — `wiki/00-overview.md` → `01` → `02` → `03` 순서 권장.
+**2. 위키 읽기** — `wiki/00-overview.md` → `01` → `02` → `03` → `04` 순서 권장.
 
 **3. 프로젝트 수행** — `wiki/04-unsloth-studio-workflow.md`를 따라 Studio에서 실행,
    결과는 `report/final-project-template.md`에 채워 넣기.
